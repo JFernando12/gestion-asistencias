@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Configuración de CORS para permitir peticiones desde cualquier origen
-// app.use(cors());
+app.use(cors());
 
 // Ruta para las asistencias
 app.use('/api/attendances', attendanceRoutes);
