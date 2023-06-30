@@ -6,9 +6,10 @@ const attendanceApi = createApi({
   endpoints: (builder) => ({
     getAttendances: builder.query({
       providesTags: (result, error) => {
-        const tags = result.data.map((attendance) => {
-          return { type: 'Attendance', id: attendance.id };
-        });
+        const tags =
+          result?.data?.map((attendance) => {
+            return { type: 'Attendance', id: attendance.id };
+          }) || [];
         tags.push({ type: 'Attendance', id: 'LIST' });
         return tags;
       },
@@ -16,7 +17,7 @@ const attendanceApi = createApi({
     }),
     getOneAttendance: builder.query({
       providesTags: (result, error) => {
-        return [{ type: 'Attendance', id: result.data.id }];
+        return [{ type: 'Attendance', id: result?.data?.id || 'LIST' }];
       },
       query: (id) => `/attendances/${id}`,
     }),

@@ -152,7 +152,7 @@ const AttendanceList = () => {
         <DataGrid
           loading={isLoadingList}
           getRowId={(row) => row.id}
-          rows={data?.data || []}
+          rows={data && data.data ? data.data : []}
           columns={columns}
         />
       </Box>

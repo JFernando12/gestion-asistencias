@@ -6,6 +6,7 @@ import { useCreateBatchAttendanceMutation } from '../store';
 const AttendanceBatch = () => {
   const theme = useTheme();
 
+  const [errors, setErrors] = useState('');
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
@@ -32,6 +33,7 @@ const AttendanceBatch = () => {
 
     if (error) {
       console.log('Error:', error);
+      setErrors(error?.data?.message || 'Error al subir asistencias');
       return;
     }
 
@@ -88,6 +90,18 @@ const AttendanceBatch = () => {
         >
           {isLoading ? 'Subiendo Archivo...' : 'Subir Archivo'}
         </Button>
+        {errors.length > 0 && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="20px"
+          >
+            <Typography key={errors} color="error">
+              {errors}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

@@ -6,6 +6,7 @@ import { useCreateAttendanceMutation } from '../store';
 const AttendanceForm = () => {
   const theme = useTheme();
 
+  const [errors, setErrors] = useState('');
   const [employeeId, setEmployeeId] = useState('');
   const [employeeName, setEmployeeName] = useState('');
   const [date, setDate] = useState('');
@@ -13,10 +14,7 @@ const AttendanceForm = () => {
   const [punchOut, setPunchOut] = useState('');
   const navigate = useNavigate();
 
-  const [createAttendance, { isLoading }] = useCreateAttendanceMutation({
-    // Invalidar la caché de la consulta de productos después de la mutación
-    refetchQueries: ['getProducts'],
-  });
+  const [createAttendance, { isLoading }] = useCreateAttendanceMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,17 +29,16 @@ const AttendanceForm = () => {
 
     if (error) {
       console.log('Error:', error);
+      setErrors(error?.data?.message || 'Error al crear asistencia');
       return;
     }
 
-    // Lógica para limpiar el formulario
     setEmployeeId('');
     setEmployeeName('');
     setDate('');
     setPunchIn('');
     setPunchOut('');
 
-    // Lógica para redireccionar a la lista de asistencias
     navigate('/lista asistencia');
   };
 
@@ -150,6 +147,18 @@ const AttendanceForm = () => {
             {isLoading ? 'Registrando Asistencia...' : 'Regitrar Asistencia'}
           </Button>
         </>
+        {errors.length > 0 && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="20px"
+          >
+            <Typography key={errors} color="error">
+              {errors}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

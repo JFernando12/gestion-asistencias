@@ -8,6 +8,7 @@ import {
 
 const AttendanceUpdate = () => {
   const theme = useTheme();
+  const [errors, setErrors] = useState('');	
   const [employeeId, setEmployeeId] = useState('');
   const [employeeName, setEmployeeName] = useState('');
   const [date, setDate] = useState('');
@@ -43,19 +44,10 @@ const AttendanceUpdate = () => {
     setPunchOut(data?.data.punch_out || '');
   }, [data]);
 
-  const [updateAttendance, { isLoading }] = useUpdateAttendanceMutation({
-    // Invalidar la caché de la consulta de productos después de la mutación
-    refetchQueries: ['getProducts'],
-  });
+  const [updateAttendance, { isLoading }] = useUpdateAttendanceMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log('employeeId', employeeId);
-    console.log('employeeName', employeeName);
-    console.log('date', date);
-    console.log('punchIn', punchIn);
-    console.log('punchOut', punchOut);
 
     const { error } = await updateAttendance({
       id: data?.data.id,
@@ -69,6 +61,7 @@ const AttendanceUpdate = () => {
     });
 
     if (error) {
+      setErrors(error?.data?.message || 'Error al actualizar asistencia');
       console.log('Error:', error);
       return;
     }
@@ -188,6 +181,18 @@ const AttendanceUpdate = () => {
             {isLoading ? 'Actualizando Asistencia...' : 'Actualizar Asistencia'}
           </Button>
         </>
+        {errors.length > 0 && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="20px"
+          >
+            <Typography key={errors} color="error">
+              {errors}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

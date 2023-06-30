@@ -5,7 +5,7 @@ interface AttendanceAttrs {
   employee_name: string;
   date: Date;
   punch_in: string;
-  punch_out: string;
+  punch_out?: string;
 }
 
 interface AttendanceDoc extends mongoose.Document {
@@ -13,7 +13,7 @@ interface AttendanceDoc extends mongoose.Document {
   employee_name: string;
   date: Date;
   punch_in: string;
-  punch_out: string;
+  punch_out?: string;
 }
 
 interface AttendanceModel extends mongoose.Model<AttendanceDoc> {
@@ -40,7 +40,6 @@ const attendanceSchema = new mongoose.Schema(
     },
     punch_out: {
       type: String,
-      required: true,
     },
   },
   {

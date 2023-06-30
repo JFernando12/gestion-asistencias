@@ -5,7 +5,8 @@ const success = (
   res: Response,
   status: number,
   data: any,
-  message?: string
+  message?: string,
+  options?: { offset?: number; limit?: number, count?: number }
 ) => {
   let statusCode = status || 200;
   let statusMessage = message || '';
@@ -13,6 +14,7 @@ const success = (
   res.status(statusCode).json({
     status: status,
     message: statusMessage,
+    ...options,
     data,
   });
 };
