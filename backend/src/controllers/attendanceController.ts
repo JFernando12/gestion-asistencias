@@ -37,7 +37,7 @@ const create = async (req: Request, res: Response) => {
     }
 
     if (moment(timeOut, 'HH:mm').isBefore(moment(timeIn, 'HH:mm'))) {
-      response.error(req, res, 400, 'Hora de Salida debe ser mayor');
+      response.error(req, res, 400, 'Hora de Salida debe ser mayor a Hora de Entrada.');
       return;
     }
 
