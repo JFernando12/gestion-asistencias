@@ -38,29 +38,34 @@ List the main technologies, libraries, and dependencies used in both the fronten
 
   ```bash
   git clone https://github.com/JFernando12/gestion-asistencias
+  ```
 
 2. Copy code:
 
   ```bash
   cd gestion-asistencias
+  ```
 
 3. Install the backend dependencies:
 
   ```bash
   cd backend
   npm install
+  ```
 
 4. Compile and build the backend:
 
   ```bash
   cd backend
   npm run build
+  ```
 
 4. Install the frontend dependencies:
 
   ```bash
   cd frontend
   npm install
+  ```
 
 ## Environment
 
@@ -69,12 +74,14 @@ List the main technologies, libraries, and dependencies used in both the fronten
   ```bash
   PORT=3000
   MONGO_URI=mongodb://username:password@host:port/database
+  ```
 
 2. Create the following variables inside .env in frontend folder:
 
   ```bash
   PORT=5000
   REACT_APP_API_URL=http://localhost:3000/api
+  ```
 
 ## Usage
 
@@ -83,12 +90,14 @@ List the main technologies, libraries, and dependencies used in both the fronten
   ```bash
   cd backend
   npm start
+  ```
 
 2. Start the frontend development server:
 
   ```bash
   cd frontend
   npm start
+  ```
 
 Access the application in your browser at http://localhost:5000.
 
@@ -99,3 +108,4 @@ To run tests for the backend:
   ```bash
   cd backend
   npm run test
+  ```
