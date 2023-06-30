@@ -74,7 +74,7 @@ const AttendanceUpdate = () => {
     setPunchOut('');
 
     // Lógica para redireccionar a la lista de asistencias
-    navigate('/lista asistencia');
+    navigate('/');
   };
 
   return (

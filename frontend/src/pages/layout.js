@@ -7,7 +7,6 @@ import Navbar from '../components/Navbar';
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const isNonMobile = useMediaQuery('(min-width:600px)');
-  console.log('isNonMobile', isNonMobile);
 
   return (
     <Box display={'flex'} width="100%" height="100%">

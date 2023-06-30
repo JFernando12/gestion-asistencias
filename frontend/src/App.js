@@ -23,21 +23,21 @@ function App() {
             <Route element={<Layout />}>
               <Route
                 path="/"
-                element={<Navigate to="/lista asistencia" replace></Navigate>}
+                element={<Navigate to="/asistencias" replace></Navigate>}
               ></Route>
               <Route
                 exact
-                path="/lista asistencia"
+                path="/asistencias"
                 element={<AttendanceList />}
               />
               <Route
                 exact
-                path="/nueva asistencia"
+                path="/agregar"
                 element={<AttendanceForm />}
               />
               <Route
                 exact
-                path="/subir por lote"
+                path="/subir"
                 element={<AttendanceBatch />}
               />
               <Route

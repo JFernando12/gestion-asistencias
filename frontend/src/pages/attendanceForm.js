@@ -39,7 +39,7 @@ const AttendanceForm = () => {
     setPunchIn('');
     setPunchOut('');
 
-    navigate('/lista asistencia');
+    navigate('/asistencias');
   };
 
   return (

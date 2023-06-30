@@ -41,7 +41,7 @@ const AttendanceBatch = () => {
     setFile(null);
 
     // Logic to redirect to the attendance list
-    navigate('/lista asistencia');
+    navigate('/asistencias');
   };
 
   return (

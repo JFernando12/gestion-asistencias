@@ -1,3 +1,4 @@
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { configureStore } from '@reduxjs/toolkit';
 import { globalReducer, setMode } from './slices/globalSlice';
 import {
@@ -17,6 +18,7 @@ const store = configureStore({
   },
   middleware: (getDefault) => getDefault().concat(attendanceApi.middleware),
 });
+setupListeners(store.dispatch);
 
 export {
   store,

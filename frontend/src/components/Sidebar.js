@@ -25,14 +25,17 @@ import FlexBetween from './FlexBetween';
 const navItems = [
   {
     text: 'Lista Asistencia',
+    ruta: 'asistencias',
     icon: <ReceiptLongOutlined />,
   },
   {
     text: 'Nueva Asistencia',
+    ruta: 'agregar',
     icon: <AddCircleOutlineOutlined />,
   },
   {
     text: 'Subir por Lote',
+    ruta: 'subir',
     icon: <AddLinkOutlined />,
   },
 ];
@@ -88,7 +91,7 @@ const Sidebar = ({
               </FlexBetween>
             </Box>
             <List>
-              {navItems.map(({ text, icon }) => {
+              {navItems.map(({ text, icon, ruta }) => {
                 if (!icon) {
                   return (
                     <Typography key={text} sx={{ m: '2.25rem 0 1rem 3rem' }}>
@@ -96,22 +99,20 @@ const Sidebar = ({
                     </Typography>
                   );
                 }
-                const lcText = text.toLowerCase();
-
                 return (
                   <ListItem key={text} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/${lcText}`);
-                        setActive(lcText);
+                        navigate(`/${ruta}`);
+                        setActive(ruta);
                       }}
                       sx={{
                         backgroundColor:
-                          active === lcText
+                          active === ruta
                             ? theme.palette.secondary[300]
                             : 'transparent',
                         color:
-                          active === lcText
+                          active === ruta
                             ? theme.palette.primary[600]
                             : theme.palette.secondary[100],
                       }}
@@ -120,7 +121,7 @@ const Sidebar = ({
                         sx={{
                           ml: '2rem',
                           color:
-                            active === lcText
+                            active === ruta
                               ? theme.palette.primary[600]
                               : theme.palette.secondary[200],
                         }}
@@ -128,7 +129,7 @@ const Sidebar = ({
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {active === lcText && (
+                      {active === ruta && (
                         <ChevronRightOutlined sx={{ ml: 'auto' }} />
                       )}
                     </ListItemButton>
